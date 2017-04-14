@@ -1,0 +1,58 @@
+<include href="{{ @UI.'header.htm' }}" />
+
+<h2>Group <a href="{{ @BASE }}/{{ @grp[0]['Grp'] }}">{{ @grp[0]['Grp'] }}</a></h2> 
+
+<form method="post" action="{{ @BASE }}/eqf">
+   <input type="hidden" name="Grp" value="{{ @grp[0]['Grp'] }}">
+   <input type="hidden" name="Edition" value="{{ @edition }}">
+   <input type="hidden" name="Gid" value="{{ @gid }}">
+   <input type="hidden" name="Juz" value="{{ @juz }}">
+         <fieldset>
+           <legend>Juz {{ @juz }}</legend>
+           <div class="row responsive-label">
+             <div class="col-sm-12 col-md-3">
+               <label for="qari">Qari</label>
+             </div>
+             <div class="col-sm-12 col-md">
+               <input type="text" name="Qari" value="{{ @qari[0]['Qari'] }}"  
+               <check if="{{ @qari[0]['Khatam'] }}"> disabled </check>
+               placeholder="nama qari">
+             </div>
+           </div>
+           <div class="row responsive-label">
+             <div class="col-sm-12 col-md-3">
+               <label for="halaman">Halaman</label>
+             </div>
+             <div class="col-sm-12 col-md">
+                <select <check if="{{ @qari[0]['Khatam'] }}"> disabled </check> name="Page" > 
+				<repeat group="{{ @Pages }}" value="{{ @page }}">
+					<check if="{{ @page==@qari[0]['Page'] }}">
+						<true><option selected="selected" value={{ @page }}>{{ @page }}</option></true>
+						<false><option value={{ @page }}>{{ @page }}</option></false>
+					</check>
+				</repeat>					
+				</select>
+             </div>
+           </div>
+           <div class="row responsive-label">
+             <div class="col-sm-12 col-md-3">
+               <label for="submit"></label>
+             </div>
+             <div class="col-sm-12 col-md">
+               <input class="primary" 
+               <check if="{{ @qari[0]['Khatam']}}">disabled</check>
+                      type="submit" value="Kirim">
+             </div>
+           </div>
+         </fieldset>
+         </form>
+
+<check if="{{ @errCode }}">
+   <div class="alert urgent">
+      <p>{{@ERR[@errCode]}}</p>
+   </div>
+</check>
+              
+              
+
+<include href="{{ @UI.'footer.htm' }}" />

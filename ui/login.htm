@@ -1,0 +1,64 @@
+<include href="{{ @UI.'header.htm' }}" />
+
+<check if="{{ @SESSION.ErrCode }}">
+   <div class="alert urgent">
+      <p>{{ @ERR[21] }}</p>
+   </div>
+</check>              
+	              
+<check if="{{ @fail }}">
+   <div class="alert urgent">
+      <p>Password tidak sesuai</p>
+   </div>
+</check>              
+
+<check if="{{ @private }}">
+   <div class="alert urgent">
+      <p>"{{ @grp }}" adalah group tertutup.</p>
+   </div>
+</check>              
+
+    <div class="col-sm col-lg-10 col-lg-offset-1">
+          <div class="card fluid">
+            <div class="section"><h2>Login</h2></div>
+            <div class="section row">
+              <div class="col-sm-12 col-sm-first col-lg-10 col-lg-offset-1">
+      <form method="post" action="{{ @BASE }}/in">
+        <input type="hidden" name="LastUrl" value="{{ @SESSION.LastUrl }}">
+        <div class="row responsive-label">
+          <div class="col-sm-12 col-md-3">
+             <label for="grp">Group *</label>
+          </div>
+          <div class="col-sm-12 col-md">
+             <input type="text" name="Grp" value="{{ @grp }}"  placeholder="nama group">
+          </div>
+        </div>
+          <div class="row responsive-label">
+            <div class="col-sm-12 col-md-3">
+              <label for="pass">Sandi</label>
+            </div>
+            <div class="col-sm-12 col-md">
+              <input type="password" id="pass" name="Pass" value="" placeholder="kata sandi">
+			  <div class="input-group">
+                 <input type="checkbox" id="chk1" tabindex="0" autocomplete="off" 
+                  onchange="document.getElementById('pass').type = this.checked ? 'text' : 'password'"> 
+                  <label for="chk1">&nbsp;0_x</label>
+               </div>            
+            </div>
+          </div>
+          <div class="row responsive-label">
+            <div class="col-sm-12 col-md-3">
+              <label for="submit"></label>
+            </div>
+            <div class="col-sm-12 col-md">
+              <input class="primary" type="submit" value="Kirim">
+            </div>
+          </div>        
+        </form>		  
+              </div>
+              
+            </div>
+          </div>
+    </div>
+
+<include href="{{ @UI.'footer.htm' }}" />

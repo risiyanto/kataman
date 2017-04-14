@@ -1,0 +1,112 @@
+<include href="{{ @UI.'header.htm' }}" />
+
+<check if="{{ @errCode }}">
+   <div class="alert urgent">
+      <p>{{@ERR[@errCode]}}</p>
+   </div>
+</check>        
+
+
+    <div class="col-sm col-lg-10 col-lg-offset-1">
+          <div class="card fluid">
+            <div class="section"><h2>Mengubah data group <a href="{{ @BASE }}/{{ @SESSION.Grp }}">{{ @SESSION.Grp }}</a></h2></div>
+            <div class="section row">
+              <div class="col-sm-12 col-sm-first col-lg-5 col-lg-normal">
+      <form method="post" action="{{ @BASE }}/egr">
+        <div class="row responsive-label">
+          <div class="col-sm-12 col-md-3">
+            <label for="info">Keterangan</label>
+          </div>
+          <div class="col-sm-12 col-md">
+            <textarea rows="2" name="Info" placeholder="keterangan">{{ @group[0]['Info'] }}</textarea>
+          </div>
+        </div>
+     <div class="row responsive-label">
+       <div class="col-sm-12 col-md-3">
+         <label for="akses">Akses</label>
+       </div>
+       <div class="col-sm-12 col-md">
+          <select name="Private"> 
+					<option  value=0>Terbuka</option> 
+					<option 
+					<check if="{{ @group[0]['Private'] }}"> selected="selected" </check> 
+						     value=1>Tertutup</option> 
+				</select>
+       </div>
+     </div>
+        <div class="row responsive-label">
+          <div class="col-sm-12 col-md-3">
+            <label for="mail">E-mail *</label>
+          </div>
+          <div class="col-sm-12 col-md">
+            <div><input type="email" name="Mail" value=""  placeholder="e-mail"></div>
+          </div>
+        </div>
+          <div class="row responsive-label">
+            <div class="col-sm-12 col-md-3">
+              <label for="pass">Sandi lama</label>
+            </div>
+            <div class="col-sm-12 col-md">
+              <input type="password" name="Pass" id="pass" value="" placeholder="kata sandi lama">
+			  <div class="input-group">
+                 <input type="checkbox" id="chk1" tabindex="-1" autocomplete="off" 
+                  onchange="document.getElementById('pass').type = this.checked ? 'text' : 'password'"> 
+                  <label for="chk1">&nbsp;0_x</label>
+               </div>            
+            </div>
+          </div>
+          <div class="row responsive-label">
+            <div class="col-sm-12 col-md-3">
+              <label for="pass">Sandi baru</label>
+            </div>
+            <div class="col-sm-12 col-md">
+              <input type="password" id="pass0" name="Pass0" value="" placeholder="kata sandi baru">
+			  <div class="input-group">
+                 <input type="checkbox" id="chk2" tabindex="-1" autocomplete="off" 
+                  onchange="document.getElementById('pass0').type = this.checked ? 'text' : 'password'"> 
+                  <label for="chk2">&nbsp;0_x</label>
+               </div>            
+             </div>
+          </div>
+          <div class="row responsive-label">
+            <div class="col-sm-12 col-md-3">
+              <label for="submit"></label>
+            </div>
+            <div class="col-sm-12 col-md">
+              <input class="primary" type="submit" value="Kirim">
+            </div>
+          </div>        
+        </form>		  
+              </div>
+              
+              <div class="col-sm-12 col-sm-last col-lg-7 col-lg-normal">
+                 <h3>Informasi</h3>
+                 <p>Pada form ini anda bisa mengubah data-data selain nama group. Dengan syarat anda mengetahui email yang digunakan pada waktu mendaftar. </p>
+
+                 <h3>E-mail</h3>
+                 <p>Kolom <strong>email</strong> harus diisi.</p> 
+
+                 <h3>Sandi (password)</h3>
+                 <p>Kolom-kolom  <strong>Sandi</strong> biarkan kosong jika tidak hendak mengubahnya.</p>
+                 
+                 <check if="{{ @SESSION.OkCode }}">
+				   <div class="alert">
+                     <h3>Pemberitahuan</h3>
+                     <p>{{ @OK[@SESSION.OkCode] }}</p>
+                   </div>
+                 </check>
+
+                 <check if="{{ @SESSION.ErrCode }}">
+				   <div class="alert urgent">
+                     <h3>Kesalahan</h3>
+                     <p>{{ @ERR[@SESSION.ErrCode] }}</p>
+                   </div>
+                 </check>
+
+              </div> <!--col-sm-12...-->
+            </div>
+          </div>
+    </div>
+
+        
+<include href="{{ @UI.'footer.htm' }}" />

@@ -1,0 +1,76 @@
+<include href="{{ @UI.'header.htm' }}" />
+
+<main>
+<div class="container">
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12 ">
+    <div class="card fluid">
+	  <div class="section"> 
+		<h3><span style="font-size: 1.35em;">{{ @grp }}</span> [{{ @editionDate }}] </h3>
+	  </div>	
+
+	  <check if="{{ @fail }}">
+	  <div class="section"> 
+        <div class="alert urgent">
+            <p>  
+             <check if="{{ @SESSION.Privat }}"> 
+				 <true> Untuk bisa melihat group <em>"tertutup"</em> </true> 
+				 <false> Untuk menambah/mengedit data qari group </false>
+			</check>
+            <strong>{{ @SESSION.Other }}</strong> 
+            anda perlu <a href="{{ @BASE }}/out">logout</a> dulu, 
+            kemudian login sebagai <strong>{{ @SESSION.Other }}</strong></p> 
+            <p>Anda sekarang login sebagai <strong>{{ @SESSION.Grp }}</strong>  </p>
+	     </div>
+	  </div>	
+	  </check>	  
+
+      <div class="section row">
+         <div class="col-sm-12 col-sm-last col-md-12 col-md-normal">
+           <div class="container">
+				    
+<div id="clip">
+	Khataman {{ @grp }}, edisi {{ @editionDate }} 
+	<br />	
+	<repeat group="{{ @juzs }}"  key="{{ @key }}" value="{{ @val }}">
+
+      [{{ @val[0] }}:{{ @val[1] }}:{{ @val[2] }}] 
+
+	</repeat>
+	<br />
+	Khatam {{ @juzkhatam[0]['juzkhatam'] }} juz, per {{ @updatedDate }}
+</div>
+<button class="primary" data-clipboard-action="copy" data-clipboard-target="div#clip">Salin</button>
+<script src="{{ @BASE }}{{ @UI.'js/clipboard.min.js' }}"></script>
+<script>
+    var clipboard = new Clipboard('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+</script>  
+       </div> <!--container-->  
+      </div> <!--col-sm-12-->
+    </div> <!--section row-->
+	  
+	  <div class="section"> 
+			<a  href="{{ @BASE }}/{{ @grp }}">
+		  	   <button style="float: right" class="inverse">
+				Tampilan biasa
+		  	   </button>
+			</a>
+		<h5><strong>Khatam {{ @juzkhatam[0]['juzkhatam'] }} juz [{{ @updatedDate }}]</strong></h5>
+		
+	  </div>
+
+  </div> <!--card-fluid-->
+</div><!--col-sm-12...-->
+
+</div>
+</div><!--container-->
+
+</main>
+
+<include href="{{ @UI.'footer.htm' }}" />

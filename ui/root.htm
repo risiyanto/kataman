@@ -1,0 +1,34 @@
+<include href="{{ @UI.'header.htm' }}" />
+    
+<div class="col-sm col-lg-10 col-lg-offset-1">
+
+<h2>Bagi-bagi juz Al-Qur'an <span style="font-size:0.85em">untuk dikhatamkan bersama-sama.</span></h2>
+
+<p><strong>Group terdaftar:</strong></p>
+<p>
+<set foo="{{ 0 }}" />
+<repeat group="{{ @groups }}" value="{{ @group }}">
+   <check if="{{ @foo }}"> - </check>
+   <a href="{{ @BASE }}/{{ @group['Grp'] }}">{{ @group['Grp'] }}</a>
+   <set foo="{{ @foo+1 }}" /> 
+</repeat>
+</p>
+
+<check if="{{ @SESSION.Grp }}">
+  <false>
+	<h3><button class="primary" > <a style="color:white" href="{{ @BASE }}/cg/0" > Membuat</a> </button> group khataman baru.</h3> 
+  </false>
+</check>
+
+		<hr /><p>Di kampung tempat saya tinggal seringkali kalau ada hajatan, diawali dengan kegiatan kataman 
+			yaitu mengkhatamkan al-qur'an dengan membagi juz-juz ke orang-orang yang
+			ikut kataman (biasanya 4-7 orang). Berasal kata Khatam ditambahi akhiran an. Karena lidah jawa yang lemes, 
+			pengucapannya menjadi: <strong>kataman</strong>. </p>
+			
+          <h2>Tentang</h2>
+          <p> Website ini diilhami oleh suatu group WA, yang di situ para anggotanya bersama-sama menghatamkan Al-Quran dengan cara... 
+          <a href="{{ @BASE }}/ab">baca lanjutannya</a>
+          </p>
+</div>
+          
+<include href="{{ @UI.'footer.htm' }}" />

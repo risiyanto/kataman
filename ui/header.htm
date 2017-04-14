@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ @title }}</title>
+  <link rel="stylesheet" href="{{ @BASE }}{{ @UI }}css/mini.css">
+</head>
+<body>
+<header class="sticky">
+    <div style="float: right;">
+<check if="{{ @SESSION.Grp }}">
+  <true>
+	   <a style="color:yellow" href="{{ @BASE }}/{{ @SESSION.Grp }}">{{ @SESSION.Grp }}</a> | 
+	   <a style="color:yellow" href="{{ @BASE }}/egr">Edit</a> |
+	   <a style="color:yellow" href="{{ @BASE }}/out">Logout</a>
+  </true>
+  <false>
+       <a style="color: yellow" href="{{ @BASE }}/in">Login</a>
+  </false>
+</check>
+    </div>
+	<div style="display: inline; overflow: auto; font-weight: bold; font-size:1.65em">
+		<a href="{{ @BASE }}/" class="button">Kataman</a> 
+	</div>
+</header>

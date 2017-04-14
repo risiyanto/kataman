@@ -1,0 +1,87 @@
+<include href="{{ @UI.'header.htm' }}" />
+
+<main>
+<div class="container">
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12 ">
+    <div class="card fluid">
+	  <div class="section"> 
+		<h3><span style="font-size: 1.35em;">{{ @grp }} </span> [{{ @editionDate }}] </h3>
+	  </div>	
+
+	  <check if="{{ @attr==1 }}">
+	  <div class="section"> 
+        <div class="alert urgent">
+            <p>  
+             <check if="{{ @SESSION.Privat }}"> 
+				 <true> Untuk bisa melihat group <em>"tertutup"</em> </true> 
+				 <false> Untuk menambah/mengedit data qari group </false>
+			</check>
+            <strong>{{ @SESSION.Other }}</strong> 
+            anda perlu <a href="{{ @BASE }}/out">logout</a> dulu, 
+            kemudian login sebagai <strong>{{ @SESSION.Other }}</strong></p> 
+            <p>Anda sekarang login sebagai <strong>{{ @SESSION.Grp }}</strong>  </p>
+	     </div>
+	  </div>	
+	  </check>	  
+
+      <div class="section row">
+         <div class="col-sm-12 col-sm-last col-md-12 col-md-normal">
+           <div class="container">
+				    
+<div class="row">
+<repeat group="{{ @juzs }}"  key="{{ @key }}" value="{{ @val }}">
+    <div class="section">
+      <div class="button-group">
+      <a href="{{ @BASE }}/eqf/{{ @gid }}/{{ @key }}/0"><button class="inverse">{{ @val[0] }}</button></a> 
+      <button><strong>{{ @val[1] }}</strong></button>
+      <button><strong>{{ @val[2] }}</strong></button>
+      </div>
+    </div>
+</repeat>
+</div>
+  
+       </div> <!--container-->  
+      </div> <!--col-sm-12-->
+    </div> <!--section row-->
+	  
+	  <div class="section"> 
+			<a  href="{{ @BASE }}/{{ @grp }}/c">
+		  	   <button style="float: right" class="inverse">
+				Tampilan ringkas
+		  	   </button>
+			</a>
+		<h5><strong>Khatam {{ @juzkhatam[0]['juzkhatam'] }} juz [{{ @updatedDate }}]</stong></h5>
+
+<check if="{{ @SESSION.Grp == @grp }}">
+	<check if="{{ @juzkhatam[0]['juzkhatam'] == 30 }}">
+     <div class="col-sm-12 col-sm-first col-lg-4 col-lg-normal">
+      <form method="post" action="{{ @BASE }}/ned">
+	   <input type="hidden" name="Gid" value="{{ @gid }}">
+	   <input type="hidden" name="Grp" value="{{ @grp }}">
+	   <input type="hidden" name="Edition" value="{{ @edition }}">
+	   
+          <div class="row responsive-label">
+            <div class="col-sm-12 col-md-3">
+              <label for="submit"></label>
+            </div>
+            <div class="col-sm-12 col-md">
+              <input class="primary" name="submit" type="submit" value="Edisi baru">
+            </div>
+          </div>        
+        </form>		  
+     </div>
+ 	</check>              
+</check>              
+
+	  </div>
+
+  </div> <!--card-fluid-->
+</div><!--col-sm-12...-->
+
+</div>
+</div><!--container-->
+
+</main>
+
+<include href="{{ @UI.'footer.htm' }}" />

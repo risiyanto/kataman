@@ -1,0 +1,108 @@
+<include href="{{ @UI.'header.htm' }}" />
+
+<check if="{{ @errCode }}">
+   <div class="alert urgent">
+      <p>{{@ERR[@errCode]}}</p>
+   </div>
+</check>              
+
+    <div class="col-sm col-lg-10 col-lg-offset-1">
+          <div class="card fluid">
+            <div class="section"><h2>Membuat group kataman </h2></div>
+            <div class="section row">
+              <div class="col-sm-12 col-sm-first col-lg-5 col-lg-normal">
+		<form method="post" action="{{ @BASE }}/cg">
+                <div class="row responsive-label">
+                  <div class="col-sm-12 col-md-3">
+                    <label for="grp">Group *</label>
+                  </div>
+                  <div class="col-sm-12 col-md">
+                    <input type="text" name="Grp" value="{{ @SESSION.POST['Grp'] }}"  placeholder="nama group">
+                  </div>
+              </div>
+              <div class="row responsive-label">
+                <div class="col-sm-12 col-md-3">
+                  <label for="info">Keterangan</label>
+                </div>
+                <div class="col-sm-12 col-md">
+                  <textarea rows="2" name="Info" placeholder="keterangan">{{ @SESSION.POST['Info'] }}</textarea>
+                </div>
+              </div>
+           <div class="row responsive-label">
+             <div class="col-sm-12 col-md-3">
+               <label for="akses">Akses</label>
+             </div>
+             <div class="col-sm-12 col-md">
+                <select name="Private"> 
+					<option  value=0>Terbuka</option> 
+					<option 
+					<check if="{{ @SESSION.POST['Private'] }}"> selected="selected"</check> 
+					         value=1>Tertutup</option> 
+				</select>
+             </div>
+           </div>
+              <div class="row responsive-label">
+                <div class="col-sm-12 col-md-3">
+                  <label for="mail">E-mail *</label>
+                </div>
+                <div class="col-sm-12 col-md">
+                  <input type="email" name="Mail" value="{{ @SESSION.POST['Mail'] }}"  placeholder="e-mail">
+                </div>
+              </div>
+                <div class="row responsive-label">
+                  <div class="col-sm-12 col-md-3">
+                    <label for="pass">Sandi</label>
+                  </div>
+                  <div class="col-sm-12 col-md">
+                    <input type="password" id="pass" name="Pass" value="" placeholder="kata sandi">
+			  <div class="input-group">
+                 <input type="checkbox" id="chk1" tabindex="-1" autocomplete="off" 
+                  onchange="document.getElementById('pass').type = this.checked ? 'text' : 'password'"> 
+                  <label for="chk1">&nbsp;0_x</label>
+               </div>            
+                  </div>
+                </div>
+                <div class="row responsive-label">
+                  <div class="col-sm-12 col-md-3">
+                    <img src="{{ @BASE }}/ui/images/captcha.png">
+                  </div>
+                  <div class="col-sm-12 col-md">
+                    <input type="text" name="CaptchaCode" value=""  placeholder="kode captcha">
+                  </div>
+                </div>
+                <div class="row responsive-label">
+                  <div class="col-sm-12 col-md-3">
+                    <label for="submit"></label>
+                  </div>
+                  <div class="col-sm-12 col-md">
+                    <input class="primary" type="submit" value="Kirim">
+                  </div>
+                </div>
+              </form>
+
+              </div>
+              
+              <div class="col-sm-12 col-sm-last col-lg-7 col-lg-normal">
+                 <h3>Group</h3>
+                 <p>Nama group terdiri dari 5-15 karakter. 
+                 Hanya diperbolehkan menggunakan alfabet(a-z), numerik(0-9) dan tanda hubung minus(-)</p>
+
+                 <h3>Akses</h3>
+                 <p>Group dengan akses terbuka akan dapat dilihat oleh publik, 
+                 group tertutup hanya bisa dilihat jika pengguna sudah login dengan group terkait. </p>
+
+                 <h3>E-mail</h3>
+                 <p>Email hanya berfungsi sebagai identifikasi pembuat group. 
+                 Fitur pemberitahuan lewat email belum ada.</p> 
+
+                 <h3>Sandi (password)</h3>
+                 <p>Kolom <strong>Sandi</strong> boleh dikosongi untuk mempermudah update progress group.
+                 Anda dapat menambahkan password di kemudian hari.</p>
+                 
+              </div> <!--col-sm-12...-->
+            </div>
+          </div>
+    </div>
+
+              
+<include href="{{ @UI.'footer.htm' }}" />
