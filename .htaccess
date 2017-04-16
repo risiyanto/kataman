@@ -8,7 +8,6 @@ RewriteEngine On
 # RewriteBase /
 
 RewriteRule ^(tmp)\/|\.ini$|\.db$ - [R=404]
-RewriteRule ^(db/\.db) - [F,L,NC]
 
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_FILENAME} !-f
